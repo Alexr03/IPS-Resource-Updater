@@ -1,0 +1,34 @@
+﻿# action.yml
+name: 'IPS Resource Updater'
+description: 'Update a resource on IPS Community Forum'
+inputs:
+  ips_url:
+    description: 'URL of the IPS board.'
+    required: true
+  api_key:
+    description: 'API key to access the IPS board.'
+    required: true
+  resource_id:  # id of input
+    description: 'ID of the resource to update'
+    required: true
+  file_url:
+    description: 'External URL of the file to link to this resource.'
+    required: true
+  version:
+    description: 'New version of the resource.'
+    required: true
+  changelog:
+    description: 'Changelog for this version.'
+    required: false
+    default: ''
+  
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.ips_url }}
+    - ${{ inputs.api_key }}
+    - ${{ inputs.resource_id }}
+    - ${{ inputs.file_url }}
+    - ${{ inputs.version }}
+    - ${{ inputs.changelog }}
