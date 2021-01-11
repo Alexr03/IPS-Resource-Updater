@@ -4,7 +4,7 @@ This action will update a resource on IPS board via the REST API.
 
 ## Inputs
 
-//todo
+
 
 ## Example usage
 
