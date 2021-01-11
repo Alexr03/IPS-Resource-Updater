@@ -9,7 +9,7 @@ This action will update a resource on IPS board via the REST API.
 ## Example usage
 
 ```yml
-uses: actions/invision-resource-updater-action@v1
+uses: alexr03/ips-resource-updater@v1
 with:
   ips_url: '<ips-url>'
   api_key: '<ips-api-key>'
