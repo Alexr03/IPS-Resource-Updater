@@ -39,7 +39,7 @@ namespace DeployToInvisionAction
             request.AddParameter($"linked1_files[{Env.GetString("file_name")}]", Env.GetString("file_url"));
             request.AddParameter("version", Env.GetString("version"));
             request.AddParameter("changelog", Env.GetString("changelog"));
-            request.AddParameter("save", 0);
+            request.AddParameter("save", Env.GetBool("save_previous"));
 
             Log.Information(client.BuildUri(request).ToString());
             var restResponse = client.Execute(request);

@@ -21,6 +21,10 @@ inputs:
     description: 'Changelog for this version.'
     required: false
     default: ''
+  save_previous:
+    description: 'Save the previous version of this resource.'
+    required: false
+    default: 'false'
   
 runs:
   using: 'docker'
@@ -32,3 +36,4 @@ runs:
     - ${{ inputs.file_url }}
     - ${{ inputs.version }}
     - ${{ inputs.changelog }}
+    - ${{ inputs.savePrevious }}
