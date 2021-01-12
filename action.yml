@@ -11,6 +11,9 @@ inputs:
   resource_id:  # id of input
     description: 'ID of the resource to update'
     required: true
+  file_name:
+    description: 'File Name of the file to link to this resource.'
+    required: true
   file_url:
     description: 'External URL of the file to link to this resource.'
     required: true
@@ -33,6 +36,7 @@ runs:
     ips_url: ${{ inputs.ips_url }}
     api_key: ${{ inputs.api_key }}
     resource_id: ${{ inputs.resource_id }}
+    file_name: ${{ inputs.file_name }}
     file_url: ${{ inputs.file_url }}
     version: ${{ inputs.version }}
     changelog: ${{ inputs.changelog }}
