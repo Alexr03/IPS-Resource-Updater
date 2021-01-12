@@ -29,11 +29,11 @@ inputs:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.ips_url }}
-    - ${{ inputs.api_key }}
-    - ${{ inputs.resource_id }}
-    - ${{ inputs.file_url }}
-    - ${{ inputs.version }}
-    - ${{ inputs.changelog }}
-    - ${{ inputs.savePrevious }}
+  env: 
+    ips_url: ${{ inputs.ips_url }}
+    api_key: ${{ inputs.api_key }}
+    resource_id: ${{ inputs.resource_id }}
+    file_url: ${{ inputs.file_url }}
+    version: ${{ inputs.version }}
+    changelog: ${{ inputs.changelog }}
+    save_previous: ${{ inputs.save_previous }}
