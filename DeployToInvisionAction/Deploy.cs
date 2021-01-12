@@ -36,7 +36,7 @@ namespace DeployToInvisionAction
             var request =
                 new RestRequest($"api/downloads/files/{Env.GetInt("resource_id")}/history") {Method = Method.POST};
             request.AddParameter("key", Env.GetString("api_key"), ParameterType.QueryString);
-            request.AddParameter($"linked1_files[{Env.GetString("file_name")}]", Env.GetString("file_url"));
+            request.AddParameter($"linked_files[{Env.GetString("file_name")}]", Env.GetString("file_url"));
             request.AddParameter("version", Env.GetString("version"));
             request.AddParameter("changelog", Env.GetString("changelog"));
             request.AddParameter("save", Env.GetBool("save_previous"));
