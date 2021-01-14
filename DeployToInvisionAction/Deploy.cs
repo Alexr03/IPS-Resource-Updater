@@ -36,7 +36,7 @@ namespace DeployToInvisionAction
 
         private static bool UploadNewVersion()
         {
-            var client = new RestClient(Env.GetString("ips_url"));
+            var client = new RestClient(Env.GetString("IPS_URL"));
             var request =
                 new RestRequest($"api/downloads/files/{Env.GetInt("RESOURCE_ID")}/history") {Method = Method.POST};
             request.AddOrUpdateParameter("key", Env.GetString("API_KEY"), ParameterType.QueryString);
