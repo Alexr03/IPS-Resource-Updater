@@ -34,11 +34,11 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   env: 
-    IPS_URL: ${{ inputs.ips_url }}
-    API_KEY: ${{ inputs.api_key }}
-    RESOURCE_ID: ${{ inputs.resource_id }}
-    FILE_NAME: ${{ inputs.file_name }}
-    FILE_URL: ${{ inputs.file_url }}
-    VERSION: ${{ inputs.version }}
-    CHANGELOG: ${{ inputs.changelog }}
-    CHANGELOG_FILE: ${{ inputs.changelog_file }}
+    IPS_URL: ${{ inputs.IPS_URL }}
+    API_KEY: ${{ inputs.API_KEY }}
+    RESOURCE_ID: ${{ inputs.RESOURCE_ID }}
+    FILE_NAME: ${{ inputs.FILE_NAME }}
+    FILE_URL: ${{ inputs.FILE_URL }}
+    VERSION: ${{ inputs.VERSION }}
+    CHANGELOG: ${{ inputs.CHANGELOG }}
+    CHANGELOG_FILE: ${{ inputs.CHANGELOG_FILE }}
