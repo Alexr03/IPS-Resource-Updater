@@ -7,6 +7,7 @@ using System.Net.Http;
 using DotNetEnv;
 using Markdig;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using Serilog;
 
@@ -38,24 +39,30 @@ namespace DeployToInvisionAction
             var client = new RestClient(Env.GetString("ips_url"));
             var request =
                 new RestRequest($"api/downloads/files/{Env.GetInt("RESOURCE_ID")}/history") {Method = Method.POST};
-            request.AddParameter("key", Env.GetString("API_KEY"), ParameterType.QueryString);
-            request.AddParameter($"linked_files[{Env.GetString("FILE_NAME")}]", Env.GetString("FILE_URL"));
+            request.AddOrUpdateParameter("key", Env.GetString("API_KEY"), ParameterType.QueryString);
+            request.AddOrUpdateParameter($"linked_files[{Env.GetString("FILE_NAME")}]", Env.GetString("FILE_URL"));
             var version = Env.GetString("VERSION");
-            request.AddParameter("version", version);
+            request.AddOrUpdateParameter("version", version);
             if (!string.IsNullOrEmpty(Env.GetString("CHANGELOG_FILE")))
             {
                 var changelog = File.ReadAllText(Env.GetString("CHANGELOG_FILE"));
                 changelog = Markdown.ToHtml(changelog);
-                request.AddParameter("changelog", changelog);
+                request.AddOrUpdateParameter("changelog", changelog);
             }
             else
             {
-                request.AddParameter("changelog", Env.GetString("CHANGELOG"));
+                request.AddOrUpdateParameter("changelog", Env.GetString("CHANGELOG"));
             }
             request.AddOrUpdateParameter("save", true);
             if (GetResourceVersions(client)[0].Version == version)
             {
                 request.AddOrUpdateParameter("save", false);
+            }
+
+            if (File.Exists("Module.json"))
+            {
+                var obj = JsonConvert.DeserializeObject<JObject>(File.ReadAllText("Module.json"));
+                request.AddOrUpdateParameter("version", obj["Dll"]?.ToString() ?? version);
             }
 
             var restResponse = client.Execute(request);
