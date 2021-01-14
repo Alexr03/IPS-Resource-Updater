@@ -54,7 +54,7 @@ namespace DeployToInvisionAction
                 request.AddOrUpdateParameter("changelog", Env.GetString("CHANGELOG"));
             }
             request.AddOrUpdateParameter("save", true);
-            if (GetResourceVersions(client)[0].Version == version)
+            if (GetResourceVersions(client).Any(x => x.Version == version))
             {
                 request.AddOrUpdateParameter("save", false);
             }
