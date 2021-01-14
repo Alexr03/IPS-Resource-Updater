@@ -62,7 +62,7 @@ namespace DeployToInvisionAction
             if (File.Exists("Module.json"))
             {
                 var obj = JsonConvert.DeserializeObject<JObject>(File.ReadAllText("Module.json"));
-                request.AddOrUpdateParameter("version", obj["Dll"]?.ToString() ?? version);
+                request.AddOrUpdateParameter("version", obj["Version"]?.ToString() ?? version);
             }
 
             var restResponse = client.Execute(request);
