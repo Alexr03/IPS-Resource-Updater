@@ -2,42 +2,42 @@
 name: 'IPS Resource Updater'
 description: 'Update a resource on IPS Community Forum'
 inputs:
-  ips_url:
+  IPS_URL:
     description: 'URL of the IPS board.'
     required: true
-  api_key:
+  API_KEY:
     description: 'API key to access the IPS board.'
     required: true
-  resource_id:  # id of input
+  RESOURCE_ID:  # id of input
     description: 'ID of the resource to update'
     required: true
-  file_name:
+  FILE_NAME:
     description: 'File Name of the file to link to this resource.'
     required: true
-  file_url:
+  FILE_URL:
     description: 'External URL of the file to link to this resource.'
     required: true
-  version:
+  VERSION:
     description: 'New version of the resource.'
     required: true
-  changelog:
+  CHANGELOG:
     description: 'Changelog for this version.'
     required: false
     default: ''
-  save_previous:
-    description: 'Save the previous version of this resource.'
+  CHANGELOG_FILE:
+    description: 'Changelog file for this version.'
     required: false
-    default: 'false'
+    default: ''
   
 runs:
   using: 'docker'
   image: 'Dockerfile'
   env: 
-    ips_url: ${{ inputs.ips_url }}
-    api_key: ${{ inputs.api_key }}
-    resource_id: ${{ inputs.resource_id }}
-    file_name: ${{ inputs.file_name }}
-    file_url: ${{ inputs.file_url }}
-    version: ${{ inputs.version }}
-    changelog: ${{ inputs.changelog }}
-    save_previous: ${{ inputs.save_previous }}
+    IPS_URL: ${{ inputs.ips_url }}
+    API_KEY: ${{ inputs.api_key }}
+    RESOURCE_ID: ${{ inputs.resource_id }}
+    FILE_NAME: ${{ inputs.file_name }}
+    FILE_URL: ${{ inputs.file_url }}
+    VERSION: ${{ inputs.version }}
+    CHANGELOG: ${{ inputs.changelog }}
+    CHANGELOG_FILE: ${{ inputs.changelog_file }}
