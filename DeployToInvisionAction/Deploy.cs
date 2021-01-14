@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using DotNetEnv;
+using Markdig;
 using Newtonsoft.Json;
 using RestSharp;
 using Serilog;
@@ -43,7 +44,9 @@ namespace DeployToInvisionAction
             request.AddParameter("version", version);
             if (!string.IsNullOrEmpty(Env.GetString("CHANGELOG_FILE")))
             {
-                request.AddParameter("changelog", File.ReadAllLines(Env.GetString("CHANGELOG_FILE")));
+                var changelog = File.ReadAllText(Env.GetString("CHANGELOG_FILE"));
+                changelog = Markdown.ToHtml(changelog);
+                request.AddParameter("changelog", changelog);
             }
             else
             {
